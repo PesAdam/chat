@@ -35,7 +35,19 @@ function Chat({socket, username, room}) {
             <div className="chat-body">
                 {
                 messageList.map((messageContent) => {
-                    return <h1>{messageContent.message}</h1>;
+                    return <div className="message" id={username === messageContent.author ? "you" : "other"}> 
+                    <div> 
+                        <div className="message-content">
+                            <p>{messageContent.message}</p>
+                        
+                        </div>
+                        
+                        <div className="message-meta">
+                            <small id="time">{messageContent.time}</small>
+                            <small id="author">{messageContent.author}</small>
+                        </div>
+                    </div>
+                    </div>;
                 })
                 }
 
