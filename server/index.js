@@ -16,9 +16,16 @@ const io = new Server(server, {
     },
 });
 
+
 io.on("connection", (socket) => {
-    console.log(socket.id);
+    console.log(`Pripojene ${socket.id}`);
+    
     socket.on("disconect", () => {
         console.log("odpojene", socket.id);
+    });
+    
+    socket.on("join_room", (data) => {
+        socket.join(data);
+        console.log(`User s ideckom: ${socket.id} pripojil sa na roomku ${data}`)
     });
 });
