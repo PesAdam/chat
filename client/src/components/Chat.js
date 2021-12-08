@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-
+import ScrollToBottom from 'react-scroll-to-bottom';
 function Chat({socket, username, room}) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
@@ -17,6 +17,7 @@ function Chat({socket, username, room}) {
             };
         await socket.emit("send_message", messageData); 
         setMessageList((list) => [...list, messageData]);
+        setCurrentMessage("");
         }
     };
 
@@ -33,6 +34,7 @@ function Chat({socket, username, room}) {
             </div>
 
             <div className="chat-body">
+                <ScrollToBottom className="message-container">
                 {
                 messageList.map((messageContent) => {
                     return <div className="message" id={username === messageContent.author ? "you" : "other"}> 
@@ -50,11 +52,15 @@ function Chat({socket, username, room}) {
                     </div>;
                 })
                 }
-
+                </ScrollToBottom>
             </div>
             
             <div className="chat-footer">
-                <input type="text" placeholder="tvoja sprava" onChange={e => setCurrentMessage(e.target.value)}></input>
+                <input type="text" placeholder="tvoja sprava" 
+                value={currentMessage}
+                onChange={e => setCurrentMessage(e.target.value)}
+                onKeyPress = {(event) => {event.key === "Enter" && SendMessage()}}
+                ></input>
                 <button onClick={SendMessage}>&#9658;</button>
             </div>
         
