@@ -1,8 +1,10 @@
+body{
+  background: #263238;
+  color: #f3f3f3;
+}
 .App {
   width: 100vw;
-  height: 100vh;
-  background: #fff;
-  color: #212121;
+  height: 100vh; 
   font-family: "Open Sans", sans-serif;
   display: grid;
   place-items: center;
