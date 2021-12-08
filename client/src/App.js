@@ -19,6 +19,7 @@ function App() {
       <input placeholder="zadaj svoje meno" type="text" onChange={e => setUsername(e.target.value)}></input>
       <input placeholder="Room id" onChange={e => setRoom(e.target.value)}></input>
       <button onClick={joinRoom}>Pripoj sa</button>
+      <Chat socket={socket} username={username} room={room}/>
     </div>
   );
 }
