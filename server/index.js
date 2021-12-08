@@ -28,4 +28,8 @@ io.on("connection", (socket) => {
         socket.join(data);
         console.log(`User s ideckom: ${socket.id} pripojil sa na roomku ${data}`)
     });
+
+    socket.on("send_message", (data) => {
+        socket.to(data.room).emit("receive_message",data);
+    });
 });

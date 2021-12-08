@@ -1,4 +1,5 @@
 import './App.css';
+import Chat from "./components/Chat";
 import io from 'socket.io-client';
 import React, {useState} from 'react';
 const socket = io.connect("http://localhost:5000");
